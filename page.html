@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta charset=utf-8>
+    <style>
+    	.newTask input {
+			display:  block;
+    		width: 620px;
+    		height: 30px;
+    		margin: 20px auto;
+    	}
+    	.todos {
+    		width: 620px;
+    		height:  20px;
+    		line-height: 20px;
+    		margin: 0 auto;
+    		font-size: 16px;
+    		font-family: "Microsoft Yahei";
+    	}
+    	.list {
+    		margin: 20px 0;
+    	}
+    	.title {
+    		display: inline-block;
+    		width: 200px;
+    	}
+    	.notDone {
+    		background: red;
+    	}
+    	.done {
+    		background: green;
+    	}
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="newTask">
+        <input type="text" placeholder="请输入数据" v-model="newTodo" @keypress.enter="addTodo" class="inputBox">
+      </div>
+      <ol class="todos">
+      	<li v-for="todo in todoList" class="list">
+      		<input type="checkbox" v-model="todo.done">
+      		<span class="title">{{todo.title}}</span>
+
+      		<span v-if="todo.done" class="done task">已完成</span>
+      		<span v-else class="notDone task">未完成</span>      		
+      		<span>创建于</span>
+      		<span>{{todo.createdAt}}</span>
+      		<button @click="removeTodo(todo)">X</button>
+      	</li>
+      </ol>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>
